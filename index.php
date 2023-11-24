@@ -2,7 +2,7 @@
 session_start();
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 
 <head>
     <meta charset="UTF-8">
@@ -52,6 +52,7 @@ session_start();
             echo "<div>";
             if ($usuarioCodigo == $_SESSION["userId"]) {
                 echo "<button onclick='deletar($codigoPost)'>Deletar</button>";
+                echo "<button onclick='editar($codigoPost)'>Editar</button>";
             }
 
             echo "<h3>$nome - $datacad</h3>";
@@ -67,7 +68,9 @@ session_start();
     <script>
         function deletar(id) {
             window.location.href = `./deletarPost.php/?id=${id}`;
-
+        }
+        function editar(id) {
+            window.location.href = `./editarPost.php/?postId=${id}`;
         }
     </script>
 </body>
