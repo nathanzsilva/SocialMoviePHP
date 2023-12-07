@@ -9,57 +9,66 @@ session_start();
     <meta name="viewport" content="width=
     , initial-scale=1.0">
     <title>Login</title>
+    <link rel="stylesheet" href="./styles/style.css">
 </head>
 
 <body>
-    <?php
-    if ($_SESSION['userName'] != null) {
-        $userName = $_SESSION['userName'];
-        if ($userName != null)
-            echo "<h1>User: $userName</h1>";
-    }
-    ?>
-    <a href="./cadastro.php">
-        <button>Fazer Cadastro</button>
-    </a>
-    <a href="./index.php">
-        <button>Ver Posts</button>
-    </a>
-    <form method="POST">
-        <label for="">Email</label><br>
-        <input type="text" name="email"><br>
-        <label for="">Senha</label><br>
-        <input type="text" name="senha"><br>
-        <input type="submit" name="enviar" value="Enviar">
+    <div class="body-login">
+        <header>
+            <img src="./images/logo.png" alt="">
+        </header>
+        <!-- <?php
+        // if($_SESSION['userName'] != null) {
+        //     $userName = $_SESSION['userName'];
+        //     if($userName != null)
+        //         echo "<h1>User: $userName</h1>";
+        // }
+        ?>
+        <a href="./cadastro.php">
+            <button>Fazer Cadastro</button>
+        </a>
+        <a href="./index.php">
+            <button>Ver Posts</button>
+        </a> -->
+        <div class="container-login">
+            <h1>Login</h1>
+            <form method="POST">
+                <input class="form-input" type="text" name="email" placeholder="E-mail"><br>
+                <input class="form-input" type="text" name="senha" placeholder="Senha"><br>
+                <input class="btn-login" type="submit" name="enviar" value="Enviar">
 
-    </form>
+            </form>
 
-    <?php
-    if (isset($_POST["enviar"])) {
-        include_once("conectaDB.php");
-        $email = $_POST["email"];
-        $senha = $_POST["senha"];
+            <h3 class="cadastrese">Novo por aqui? <a href="./cadastro.php">Cadastre-se!</a></h3>
 
-        $query = "select * from Usuario where email = '$email' and senha = '$senha'";
+            <?php
+            if(isset($_POST["enviar"])) {
+                include_once("conectaDB.php");
+                $email = $_POST["email"];
+                $senha = $_POST["senha"];
 
-        $result = mysqli_query($mysqli, $query);
+                $query = "select * from Usuario where email = '$email' and senha = '$senha'";
 
-        if (!$result) {
-            die("Query inválida:" . mysqli_error($mysqli));
-        } else {
-            mysqli_close($mysqli);
+                $result = mysqli_query($mysqli, $query);
 
-            if ($row = mysqli_fetch_assoc($result)) {
-                $_SESSION['userId'] = $row["codigo"];
-                $_SESSION['userName'] = $row["nome"];
-                echo "<script>window.location.href = './index.php'</script>";
-                echo "Logado";
-            } else {
-                echo "email ou usuario Invalido";
+                if(!$result) {
+                    die("Query inválida:".mysqli_error($mysqli));
+                } else {
+                    mysqli_close($mysqli);
+
+                    if($row = mysqli_fetch_assoc($result)) {
+                        $_SESSION['userId'] = $row["codigo"];
+                        $_SESSION['userName'] = $row["nome"];
+                        echo "<script>window.location.href = './index.php'</script>";
+                        echo "Logado";
+                    } else {
+                        echo "email ou usuario Invalido";
+                    }
+                }
             }
-        }
-    }
-    ?>
+            ?>
+        </div>
+    </div>
 </body>
 
 </html>

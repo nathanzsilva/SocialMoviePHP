@@ -8,13 +8,17 @@ session_start();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="./styles/carrosel.css">
+    <link rel="stylesheet" href="./styles/style.css">
+
+
 </head>
 
 <body>
     <?php
-    if ($_SESSION['userName'] != null) {
+    if($_SESSION['userName'] != null) {
         $userName = $_SESSION['userName'];
-        if ($userName != null)
+        if($userName != null)
             echo "<h1>User: $userName</h1>";
     }
     ?>
@@ -30,6 +34,50 @@ session_start();
     <a href="./deslogar.php">
         <button>Deslogar</button>
     </a>
+
+    <div class="carrosel-container">
+        <div class="slider">
+            <div class="slides">
+                <input type="radio" name="radio-btn" id="radio1">
+                <input type="radio" name="radio-btn" id="radio2">
+                <input type="radio" name="radio-btn" id="radio3">
+                <input type="radio" name="radio-btn" id="radio4">
+
+                <div class="slide first">
+                    <img src="./images/logo.png" alt="">
+                </div>
+                <div class="slide">
+                    <img src="./images/fundologin.png" alt="">
+                </div>
+                <div class="slide">
+                    <img src="./images/logo.png" alt="">
+                </div>
+                <div class="slide">
+                    <img src="./images/fundologin.png" alt="">
+                </div>
+
+                <div class="navigation-auto">
+                    <div class="auto-btn1"></div>
+                    <div class="auto-btn2"></div>
+                    <div class="auto-btn3"></div>
+                    <div class="auto-btn4"></div>
+                </div>
+            </div>
+            <div class="manual-navigation">
+                <label for="radio1" class="manual-btn"></label>
+                <label for="radio2" class="manual-btn"></label>
+                <label for="radio3" class="manual-btn"></label>
+                <label for="radio4" class="manual-btn"></label>
+            </div>
+
+        </div>
+    </div>
+
+
+
+
+
+
     <?php
     include_once("conectaDB.php");
 
@@ -37,11 +85,11 @@ session_start();
 
     $result = mysqli_query($mysqli, $query);
 
-    if (!$result) {
-        die("Query inválida:" . mysqli_error($mysqli));
+    if(!$result) {
+        die("Query inválida:".mysqli_error($mysqli));
     } else {
         mysqli_close($mysqli);
-        foreach ($result as $row) {
+        foreach($result as $row) {
             $codigoPost = $row["codigoPost"];
             $texto = $row["texto"];
             $datacad = $row["dataCad"];
@@ -50,7 +98,7 @@ session_start();
 
             echo "<hr>";
             echo "<div>";
-            if ($usuarioCodigo == $_SESSION["userId"]) {
+            if($usuarioCodigo == $_SESSION["userId"]) {
                 echo "<button onclick='deletar($codigoPost)'>Deletar</button>";
                 echo "<button onclick='editar($codigoPost)'>Editar</button>";
             }
@@ -65,6 +113,7 @@ session_start();
 
     }
     ?>
+    <script src="./scripts/script.js"></script>
     <script>
         function deletar(id) {
             window.location.href = `./deletarPost.php/?id=${id}`;

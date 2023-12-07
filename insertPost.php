@@ -43,7 +43,7 @@ session_start();
         $texto = $_POST["texto"];
         $userId = $_SESSION['userId'][0];
 
-        $query = "insert Posts (texto, usuariocodigo, datacad) values ('$texto',$userId,CURRENT_TIMESTAMP())";
+        $query = "INSERT INTO Tarefa (descricao, idCategoria, idPrioridade) VALUES ('Fazer apostila', 1, 1)";
 
         $result = mysqli_query($mysqli, $query);
 

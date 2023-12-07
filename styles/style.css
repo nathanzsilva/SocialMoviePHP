@@ -1,0 +1,88 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    color: white;
+    font-family: 'Inter', sans-serif;
+}
+
+.body-login {
+    width: 100vw;
+    height: 100vh;
+    background-image: url("../images/fundologin.png");
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+
+.body-login header {
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+}
+
+.body-login header img {
+    margin-left: 30px;
+}
+
+.container-login {
+    background-color: rgba(6, 23, 53, 0.75);
+    width: 600px;
+    height: 800px;
+    margin: auto;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.container-login form {
+    width: 100%;
+    display: flex;
+    gap: 20px;
+    flex-direction: column;
+    align-items: center;
+}
+
+.container-login form input {
+    width: 80%;
+}
+
+.form-input {
+    background-color: #06264D;
+    border-radius: 15px;
+    height: 6vh;
+    padding-left: 10px;
+}
+
+.form-input::placeholder {
+    color: #647FAC;
+    font-size: large;
+}
+
+.form-date {
+    display: flex;
+    width: 80%;
+}
+
+.btn-login {
+    background-color: #AE0001;
+    border-radius: 15px;
+    width: 60% !important;
+    height: 5vh;
+    font-size: 26px;
+}
+
+.cadastrese {
+    color: #647FAC;
+}
+
+.cadastrese a {
+    color: white;
+    text-decoration: none;
+}
