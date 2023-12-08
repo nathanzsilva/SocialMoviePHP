@@ -29,6 +29,74 @@
     margin-left: 30px;
 }
 
+.body-home {
+    background-color: #06264D;
+    min-height: 100vh;
+
+}
+
+.body-home header {
+    width: 100%;
+    background-color: #061735;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 30px;
+}
+
+.body-home header ul {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    list-style: none;
+    gap: 2vw;
+    font-size: x-large;
+}
+
+.body-home header a {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+}
+
+.body-comunidade {
+    background-color: #06264D;
+    min-height: 100vh;
+
+}
+
+.body-comunidade header {
+    width: 100%;
+    background-color: #061735;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 30px;
+}
+
+.body-comunidade header ul {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    list-style: none;
+    gap: 2vw;
+    font-size: x-large;
+}
+
+.body-comunidade header a {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+}
+
+.btn-post {
+    background-color: #AE0001;
+    border-radius: 15px;
+    padding: 0 40px;
+    height: 5vh;
+    font-size: 26px;
+}
+
 .container-login {
     background-color: rgba(6, 23, 53, 0.75);
     width: 600px;
@@ -65,9 +133,30 @@
     font-size: large;
 }
 
+.row {
+    display: flex;
+}
+
+.aic {
+    align-items: center;
+}
+
+.gap5 {
+    gap: 5px;
+}
+
+.margin20 {
+    margin: 20px;
+}
+
 .form-date {
     display: flex;
     width: 80%;
+}
+
+.active {
+    color: #AE0001;
+
 }
 
 .btn-login {
@@ -85,4 +174,113 @@
 .cadastrese a {
     color: white;
     text-decoration: none;
+}
+
+#deslogar {
+    text-align: center;
+    margin-top: 5px;
+}
+
+.container-movies {
+    margin-top: 50px;
+    padding: 0 10vw;
+    display: flex;
+    flex-wrap: wrap;
+    text-align: center;
+    justify-content: center;
+    gap: 80px;
+}
+
+.container-movies img {
+    width: 300px;
+    height: 400px;
+    object-fit: cover;
+    margin-bottom: 20px;
+
+}
+
+.title {
+    margin-left: 10vw;
+}
+
+.movie-details {
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+}
+
+.movie {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+}
+
+.movie img {
+    height: 30vh;
+
+}
+
+.container-comments {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.comment {
+    padding: 15px;
+    margin-bottom: 10px;
+}
+
+.comment-text {
+    margin: 0;
+}
+
+.add-comment {
+    padding: 20px;
+    margin-top: 20px;
+}
+
+.add-comment h3 {
+    margin-bottom: 10px;
+}
+
+.user-info {
+    margin: 20px;
+}
+
+.container-insertPost {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 100px;
+}
+
+.container-insertPost form {
+    padding: 30px;
+    background-color: rgba(6, 23, 53, 0.75);
+    width: 300px;
+    height: 400px;
+    margin: auto;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+
+}
+
+.container-insertPost form input[type=submit] {
+    background-color: #AE0001;
+    border-radius: 15px;
+    padding: 0 40px;
+    height: 5vh;
+    font-size: 26px;
+}
+
+.container-insertPost form textarea {
+    height: 10vh;
+    border-radius: 15px;
+    padding-left: 20px;
 }

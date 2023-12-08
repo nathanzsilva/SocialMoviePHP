@@ -1,10 +1,12 @@
 <?php
+$idPost = $_GET["id"] ?? "";
+
+if($idPost == "") {
+    header("location:comunidade.php");
+}
+
 session_start();
-
-$idFilme = $_GET["id"] ?? "";
 include_once("conectaDB.php");
-
-
 ?>
 
 <!DOCTYPE html>
@@ -13,7 +15,7 @@ include_once("conectaDB.php");
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inserir Post - SocialMovie</title>
+    <title>Responder Post - SocialMovie</title>
     <link rel="stylesheet" href="./styles/style.css">
 
 </head>
@@ -52,24 +54,7 @@ include_once("conectaDB.php");
         </header>
         <div class="container-insertPost">
             <form method="POST">
-                <h1>Inserir Post</h1>
-                <?php
-                if($idFilme == "") {
-                    $query = "select * from Filmes;";
-
-                    $result = mysqli_query($mysqli, $query);
-                    echo "<select name='idFilme' class='form-input'>";
-                    foreach($result as $row) {
-
-                        $descricao = $row["descricao"];
-                        $codigo = $row["codigo"];
-
-                        echo "<option value='$codigo'>$descricao</option>";
-                    }
-                    echo "</select>";
-
-                }
-                ?>
+                <h1>Responder Post</h1>
                 <textarea type="text" name="texto" placeholder="Texto" style="color:black;" required></textarea><br>
                 <input type="submit" name="enviar" value="Enviar">
             </form>
@@ -85,10 +70,9 @@ include_once("conectaDB.php");
                     echo "<script>window.location.href = './index.php'</script>";
                 }
                 $texto = $_POST["texto"];
-                $idFilme = $_POST["idFilme"] ?? $idFilme;
                 $userId = $_SESSION['userId'][0];
 
-                $query = "insert Posts (codigoFilme, texto, usuariocodigo, datacad) values ($idFilme, '$texto',$userId,CURRENT_TIMESTAMP());";
+                $query = "insert Comentarios (postCodigo, texto, usuariocodigo, datacad) values ($idPost, '$texto',$userId,CURRENT_TIMESTAMP());";
 
                 $result = mysqli_query($mysqli, $query);
 
@@ -96,7 +80,7 @@ include_once("conectaDB.php");
                     die("Query inválida:".mysqli_error($mysqli));
                 } else {
                     mysqli_close($mysqli);
-                    echo "Post Cadastrado com sucesso";
+                    echo "Resposta Cadastrada com sucesso";
                 }
             }
             ?>
