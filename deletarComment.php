@@ -4,7 +4,7 @@ include_once("conectaDB.php");
 
 $idPost = $_GET["id"];
 
-$query = "delete from Posts where codigo = $idPost";
+$query = "delete from Comentarios where codigo = $idPost";
 
 $result = mysqli_query($mysqli, $query);
 

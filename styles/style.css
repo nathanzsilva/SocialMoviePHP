@@ -6,6 +6,7 @@
     box-sizing: border-box;
     color: white;
     font-family: 'Inter', sans-serif;
+    text-decoration: none;
 }
 
 .body-login {
@@ -176,6 +177,11 @@
     text-decoration: none;
 }
 
+#login {
+    text-align: center;
+    margin-top: 5px;
+}
+
 #deslogar {
     text-align: center;
     margin-top: 5px;
@@ -283,4 +289,42 @@
     height: 10vh;
     border-radius: 15px;
     padding-left: 20px;
+}
+
+.btn-delete {
+    background-color: red;
+    padding: 3px 8px;
+    border: none;
+    border-radius: 7px;
+}
+
+.container-perfil {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 100px;
+}
+
+.container-perfil form {
+    padding: 80px;
+    background-color: rgba(6, 23, 53, 0.75);
+    width: 70vw;
+    margin: auto;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.container-perfil form > div {
+    margin-top: 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+.container-perfil form > div > div {
+    display: flex;
+    gap: 40px;
 }

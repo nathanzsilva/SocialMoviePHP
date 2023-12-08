@@ -24,7 +24,9 @@ $idFilme = $_GET["id"] ?? "";
                 <ul>
                     <li><a href="index.php">Home</a></li>
                     <li class="active">Comunidade</li>
-                    <li>Perfil</li>
+                    <a href="./perfil.php">
+                        <li>Perfil</li>
+                    </a>
                 </ul>
             </div>
             <div class="row aic gap5">
@@ -87,24 +89,28 @@ $idFilme = $_GET["id"] ?? "";
             <?php
             if($idFilme != "") {
 
-                $query = "select * from Posts as p join Usuario as u on p.usuariocodigo = u.codigo where codigoFilme =$idFilme;";
+                $query = "select *, p.codigo as postCodigo, p.usuariocodigo as userId from Posts as p join Usuario as u on p.usuariocodigo = u.codigo where codigoFilme =$idFilme;";
 
                 $result = mysqli_query($mysqli, $query);
 
                 if(mysqli_num_rows($result) > 0) {
                     foreach($result as $row) {
 
+                        $usuariocodigo = $row["userId"];
+                        $postCodigo = $row["postCodigo"];
                         $username = $row["nome"];
                         $texto = $row["texto"];
                         $dataCad = $row["dataCad"];
                         $formattedDate = date("d/m/Y", strtotime($dataCad));
 
+                        echo " <a href='./post.php?id=$postCodigo'> <div class='comment'><div class='user-info'>";
 
-                        echo "  <div class='comment'><div class='user-info'>";
+                        if($_SESSION['userId'] == $usuariocodigo)
+                            echo "<form action='deletarPost.php'><input name='id' value='$postCodigo' type='hidden'><input class='btn-delete' type='submit' value='Apagar'></form>";
                         echo "<h3 class='username'>$username - $formattedDate</h3>";
                         echo "</div>";
 
-                        echo "<p class='comment-text'>$texto</p>";
+                        echo "<p class='comment-text'>$texto</p></div></a>";
 
                     }
                 } else {
@@ -113,12 +119,14 @@ $idFilme = $_GET["id"] ?? "";
                 }
 
             } else {
-                $query = "select *, f.descricao as filme from Posts as p join Usuario as u on p.usuariocodigo = u.codigo join Filmes as f on f.codigo = p.codigofilme;";
+                $query = "select *, f.descricao as filme, p.codigo as postCodigo,  p.usuariocodigo as userId from Posts as p join Usuario as u on p.usuariocodigo = u.codigo join Filmes as f on f.codigo = p.codigofilme;";
 
                 $result = mysqli_query($mysqli, $query);
 
                 foreach($result as $row) {
 
+                    $usuariocodigo = $row["userId"];
+                    $postCodigo = $row["postCodigo"];
                     $username = $row["nome"];
                     $filme = $row["filme"];
                     $texto = $row["texto"];
@@ -126,13 +134,16 @@ $idFilme = $_GET["id"] ?? "";
                     $formattedDate = date("d/m/Y", strtotime($dataCad));
 
 
-                    echo "  <div class='comment'><div class='user-info'>";
+                    echo " <a href='./post.php?id=$postCodigo'> <div class='comment'><div class='user-info'>";
+
+                    if($_SESSION['userId'] == $usuariocodigo)
+                        echo "<form action='deletarPost.php'><input name='id' value='$postCodigo' type='hidden'><input class='btn-delete' type='submit' value='Apagar'></form>";
                     echo "<h3 class='username'>$username - $filme - $formattedDate</h3>";
                     echo "</div>";
 
                     echo "<p class='comment-text'>$texto</p>";
 
-                    echo "</div>";
+                    echo "</div></a>";
 
                 }
             }

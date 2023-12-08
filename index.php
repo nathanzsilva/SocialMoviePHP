@@ -24,22 +24,27 @@ session_start();
                     <a href="./comunidade.php">
                         <li>Comunidade</li>
                     </a>
-                    <li>Perfil</li>
+                    <a href="./perfil.php">
+                        <li>Perfil</li>
+                    </a>
                 </ul>
             </div>
             <div class="row aic gap5">
                 <div onmouseenter='seeExit()' onmouseleave='hideExit()'>
                     <?php
-                    if($_SESSION['userName'] != null) {
+                    $user = $_SESSION['userName'] ?? "";
+
+                    if($user != "") {
                         $userName = $_SESSION['userName'];
                         if($userName != null)
                             echo "<p>$userName</p>";
+                        echo "<a href='./deslogar.php' style='display:none;' id='deslogar'>Deslogar</a>";
+                    } else {
+                        echo " <a href='./login.php' id='login'>Login</a>";
                     }
                     ?>
 
-                    <a href="./deslogar.php" style="display:none;" id="deslogar">
-                        Deslogar
-                    </a>
+
                 </div>
 
                 <a href="./insertPost.php">

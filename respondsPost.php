@@ -27,11 +27,15 @@ include_once("conectaDB.php");
             <img src="./images/logo.png" alt="">
             <div>
                 <ul>
-                    <li class="active">Home</li>
+                    <a href="./index.php">
+                        <li>Home</li>
+                    </a>
                     <a href="./comunidade.php">
                         <li>Comunidade</li>
                     </a>
-                    <li>Perfil</li>
+                    <a href="./perfil.php">
+                        <li>Perfil</li>
+                    </a>
                 </ul>
             </div>
             <div class="row aic gap5">

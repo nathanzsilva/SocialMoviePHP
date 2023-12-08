@@ -27,9 +27,15 @@ include_once("conectaDB.php");
             <img src="./images/logo.png" alt="Logo">
             <div>
                 <ul>
-                    <li><a href="index.php">Home</a></li>
-                    <li class="active">Comunidade</li>
-                    <li>Perfil</li>
+                    <a href="index.php">
+                        <li>Home</li>
+                    </a>
+                    <a href="index.php">
+                        <li class="active">Comunidade</li>
+                    </a>
+                    <a href="./perfil.php">
+                        <li>Perfil</li>
+                    </a>
                 </ul>
             </div>
             <div class="row aic gap5">
@@ -69,6 +75,7 @@ include_once("conectaDB.php");
                 $dataCad = $row["dataCad"];
                 $formattedDate = date("d/m/Y", strtotime($dataCad));
 
+
                 echo "  <div class='comment'><div class='user-info'>";
                 echo "<h3 class='username'>$username - $filme - $formattedDate</h3>";
                 echo "</div>";
@@ -87,20 +94,29 @@ include_once("conectaDB.php");
 
             <?php
 
-            $query = "select * from Comentarios as c join Usuario as u on c.usuariocodigo = u.codigo where c.postCodigo =$idPost;";
+            $query = "select *, c.codigo as commentCodigo,c.usuariocodigo as userId from Comentarios as c join Usuario as u on c.usuariocodigo = u.codigo where c.postCodigo =$idPost;";
 
             $result = mysqli_query($mysqli, $query);
 
             if(mysqli_num_rows($result) > 0) {
                 foreach($result as $row) {
 
+                    $usuariocodigo = $row["userId"];
+
+
+                    $commentCodigo = $row["commentCodigo"];
                     $username = $row["nome"];
                     $texto = $row["texto"];
                     $dataCad = $row["dataCad"];
                     $formattedDate = date("d/m/Y", strtotime($dataCad));
 
+                    //
+            
 
                     echo "  <div class='comment'><div class='user-info'>";
+
+                    if($_SESSION['userId'] == $usuariocodigo)
+                        echo "<form action='deletarComment.php'><input name='id' value='$commentCodigo' type='hidden'><input class='btn-delete' type='submit' value='Apagar'></form>";
                     echo "<h3 class='username'>$username - $formattedDate</h3>";
                     echo "</div>";
 
